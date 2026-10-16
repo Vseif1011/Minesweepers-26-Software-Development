@@ -1,0 +1,27 @@
+{
+  "cube_version": "1.28.1",
+  "sources": [
+    {
+      "name": "cube",
+      "repo": "STMicroelectronics/STM32CubeF4",
+      "commit": "83778d5c95cb01695c7facbf095db3ab445532ea",
+      "sparse_paths": [
+        "Drivers/CMSIS/Include",
+        "Middlewares/ST/STM32_USB_Device_Library",
+        "Middlewares/Third_Party/FreeRTOS"
+      ]
+    },
+    {
+      "name": "hal",
+      "repo": "STMicroelectronics/stm32f4xx-hal-driver",
+      "commit": "c2e1406d7ea4b73aa42b98ddeb75a8670b1a5a16",
+      "sha256": "a78844548d362a8548935f877201b3deafad9aac93fc4815bc3c2fa20f99dc02"
+    },
+    {
+      "name": "device",
+      "repo": "STMicroelectronics/cmsis-device-f4",
+      "commit": "5f41fb29d22773896c780052bf61e47fc924d524",
+      "sha256": "7b70f5e3613eac5472426b206765620aa4192d96df1f21a3a5d84ea999f70c41"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Optional: real YOLO only. Install into a ROS-compatible Python environment.
+# CPU/GPU torch wheels must support that environment's Python version.
+ultralytics>=8.2,<9

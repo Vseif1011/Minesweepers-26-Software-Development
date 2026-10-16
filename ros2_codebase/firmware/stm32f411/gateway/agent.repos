@@ -1,0 +1,9 @@
+repositories:
+  micro-ROS-Agent:
+    type: git
+    url: https://github.com/micro-ROS/micro-ROS-Agent.git
+    version: 8cf77415e64a9a95ace719f14a020b7a0745e19e
+  micro_ros_msgs:
+    type: git
+    url: https://github.com/micro-ROS/micro_ros_msgs.git
+    version: a7921c15229beab8b066c117f81d5d8f75e0c014

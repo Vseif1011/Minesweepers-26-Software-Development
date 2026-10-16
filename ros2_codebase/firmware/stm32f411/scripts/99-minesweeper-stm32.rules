@@ -1,0 +1,5 @@
+# Optional persistent device permissions, installed by an administrator.
+SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="572a", GROUP="plugdev", MODE="0660"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="572a", GROUP="plugdev", MODE="0660"
+# Application CDC device: this account already belongs to plugdev.
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", GROUP="plugdev", MODE="0660"

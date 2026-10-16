@@ -1,0 +1,55 @@
+# Encoder scales below are inherited starting values, not STM32 measurements.
+stm32_detector:
+  ros__parameters:
+    threshold: 0.5  # digital 0/1 only; calibrate if firmware uses ADC counts
+    status_timeout: 0.5
+odometry:
+  ros__parameters:
+    ticks_per_meter_left: 3800.0
+    ticks_per_meter_right: 2255.0
+    track_width: 0.55
+    publish_tf: false
+ekf:
+  ros__parameters:
+    publish_tf: true
+    sensor_timeout: 0.5
+    odom_variances: [0.03, 0.03, 0.05, 0.04, 0.04]
+    imu_variances: [0.1, 0.01]
+teleop:
+  ros__parameters:
+    linear_axis: 1
+    angular_axis: 0
+    deadman_button: 6
+    arm_up_button: 0
+    arm_down_button: 3
+    release_button: 1
+    hold_button: 2
+    speed_up_button: 4
+    speed_down_button: 5
+    linear_scale: 0.5
+    angular_scale: 1.0
+    input_timeout: 0.5
+mapping:
+  ros__parameters:
+    width: 20                 # cell counts: 20 x 20 = 400 competition squares
+    height: 20
+    resolution: 1.0           # metres per cell: field is 20 m x 20 m
+    # Robot reference point at odometry zero; +X right, +Y up, heading CCW radians.
+    # Start at the bottom-left origin, facing right. Sweep +X on even rows,
+    # -X on odd rows, advancing +Y by 1 m between rows (route reference only).
+    start_x: 0.0
+    start_y: 0.0
+    start_heading: 0.0
+    detector_offset: 0.55      # metres forward of the robot reference point; measure it
+    detector_lateral_offset: 0.0  # metres to the left; measure it
+    sensor_timeout: 0.75
+    confirmation_samples: 3   # distinct metal messages in the same cell/class
+    confirmation_duration: 0.1  # seconds of consistent evidence, also required
+    output_path: ~/.ros/minesweepers/mine_map.json
+vision:
+  ros__parameters:
+    confidence: 0.5
+    device: cpu
+    target_classes: [-1]
+    image_timeout: 0.75
+    display: false

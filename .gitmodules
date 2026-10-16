@@ -1,0 +1,6 @@
+[submodule "legacy-laptop-rosserial"]
+	path = catkin_ws/src/rosserial
+	url = https://github.com/ros-drivers/rosserial.git
+[submodule "legacy-pi-rosserial"]
+	path = rpi_ws/src/rosserial
+	url = https://github.com/ros-drivers/rosserial.git

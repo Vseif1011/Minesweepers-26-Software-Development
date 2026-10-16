@@ -1,0 +1,115 @@
+# Minesweepers 2026 Software Development
+
+The current implementation is in [ros2_codebase](ros2_codebase/README.md):
+direct STM32-to-Pi USB serial, ROS 2 telemetry, laptop YOLO vision, and the
+20 m × 20 m competition map. See [import notes](IMPORT_NOTES.md) for dependencies
+and the source snapshot. The retained 2024 project documentation follows below.
+
+# Minesweepers_A 2024
+**Minesweepers Competition'2024 Team A**
+
+## Team Members:
+
+### Team Leaders:
+- Mariam Gadallah
+- Ahmed Anwar
+
+### Software Team Members:
+- Noura Maklad
+- Mohamed Mahdy
+
+### Electrical Team Members:
+- Youssef Hatem
+- Mahmoud Sayed
+
+### Mechanical Team Members:
+- Mahmoud Essam
+- Alaaeldin Manaa
+- Omar Elgamal
+
+## Workspaces:
+- catkin_ws (Laptop Workspace)
+- rpi_ws (Raspberry Pi Workspace)
+
+
+## To-Do List:
+
+- Make the robot move         (LEFT Stick or Buttons on the LEFT side)
+  - [x] In Progress 
+  - [x] Done
+- Assign buttons for gripper  (RIGHT Stick or Buttons on the RIGHT side)
+  - [x] In Progress 
+  - [X] Done
+- Mapping
+  - IMU Calibration code (Madgwick Filter)
+    - [x] In Progress 
+    - [x] Done
+  - Kalman Filter (EKF)
+    - [x] In Progress 
+    - [x] Done
+- Mapping GUI 
+  - [x] In Progress 
+  - [x] Done
+- Streaming
+  - [x] In Progress 
+  - [x] Done
+- Launch Files preparation 
+  - [x] In Progress 
+  - [x] Done
+- Assemble electrical components 
+  - [X] In Progress 
+  - [x] Done
+- Fabricate mechanical parts 
+  - [x] In Progress 
+  - [x] Done
+- Assemble mechanical parts 
+  - [x] In Progress 
+  - [x] Done
+- Test and integrate all components 
+  - [x] In Progress 
+  - [ ] Done
+- Prepare Report and Video
+  - [x] In Progress 
+  - [ ] Done
+- Prepare for the final presentation 
+  - [ ] In Progress 
+  - [ ] Done
+- Line changing color for picking the mine 
+  - [x] In Progress 
+  - [ ] Done
+- Autonomous Gripping (**x2 mine collection points**)
+  - [x] In Progress 
+  - [ ] Done
+  
+--------------------------------------------------------------------
+## Optimizations (Subject to time):  
+- [ ] Use **YOLO-Fast** (unofficial YOLO Model) instead of YOLOv8n
+[Fast YOLO: A Fast You Only Look Once System for Real-time Embedded Object Detection in Video](https://arxiv.org/abs/1709.05943)
+- [ ] Autonomous **Navigation** (**20 %** Bonus)
+--------------------------------------------------------------------
+
+## How to launch
+
+<div align="center">
+
+**سمـّي و دوّر**
+
+</div>
+
+- Start by launching `sammy.py` on your PC using `python3 sammy.py`.
+- Then, on RPi, launch `dawar.py` by using `python3 dawar.py`.
+
+--------------------------------------------------------------------
+
+# Notes:
+**dawar.py is for launching the laptop nodes**
+  - For Arduino ROS lib navigate to the following link:
+    - [Arduino ROS](https://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup)
+  - Must add IP for pc in pi host list (/etc/hosts)  in the following format: ip username , and vice versa
+  - For MPU6050 Package (it works for MPU 9250 Also) you have to install this on your RPi:
+```
+sudo apt-get install ros-${ROS_DISTRO}-turtle-tf2 ros-${ROS_DISTRO}-tf2-tools ros-${ROS_DISTRO}-tf
+```
+## Controller Alignemnt
+![Controller](Controller.png)
+

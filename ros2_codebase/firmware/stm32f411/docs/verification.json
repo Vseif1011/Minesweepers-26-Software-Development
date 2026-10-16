@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-16",
+  "target": "STM32F411CEU6",
+  "oscillator_hz": 25000000,
+  "application_origin": "0x08004000",
+  "flash_bytes": 108836,
+  "ram_bytes_including_reservations": 102576,
+  "arm_compiler": "GNU Arm GCC 14.2.1",
+  "client_packages_built": 45,
+  "micro_ros_distro": "lyrical",
+  "xrce_client_agent_version": "3.0.2 (source manifests; Pi runtime unverified)",
+  "motor_hardware_approved": false,
+  "host_tests": [
+    "control tests: 10271 assertions passed",
+    "motor driver tests: PWM limits, direction/enable polarity, reversal deadtime, stop and invalid inputs passed",
+    "MPU6050 tests: identity, configuration, exact signed user offsets/readback, freshness, SI conversion, saturation and bus failure passed",
+    "project checks: XML, motor-disabled commissioning profile, immutable vendor pins, bounded messages passed",
+    "newlib heap tests: srand allocation, exact bounds, exhaustion and negative-increment limits passed"
+  ],
+  "native_interfaces_build": "passed",
+  "native_embedded_type_hashes": "all three match",
+  "firmware_flashing": "passed for final updated image, original WeAct bootloader preserved",
+  "cubeide_gui_import": "unverified: application unavailable",
+  "hardware_validation": "not performed",
+  "artifacts": {
+    "elf": {
+      "bytes": 1800592,
+      "sha256": "163f800e4368be5c980d466d39ad424a5661a09c7d372303462de2d269fc91d7"
+    },
+    "bin": {
+      "bytes": 108836,
+      "sha256": "6ca8816cee28f1e38faa8844ed324c81fade1864eef66fbf1eb0d72bb31d7b17"
+    },
+    "hex": {
+      "bytes": 306104,
+      "sha256": "790b834408a7ae3cf949d922ff56e990bc11dd4487598883f3e6fee6ed95fc4e"
+    }
+  },
+  "flashed_bin_sha256": "6ca8816cee28f1e38faa8844ed324c81fade1864eef66fbf1eb0d72bb31d7b17",
+  "application_usb": {
+    "vid": "0483",
+    "pid": "5740",
+    "serial": "005A00573133510836373538",
+    "port": "/dev/ttyACM0",
+    "bus_device": "001:013"
+  },
+  "motor_power_isolation": "confirmed by user before flashing",
+  "prepared_zip_clean_build": "passed for updated image; byte-identical BIN",
+  "serial_access": "granted by user; open confirmed",
+  "live_micro_ros": {
+    "agent_host": "laptop ROS 2 Lyrical, XRCE Agent 3.0.2",
+    "status_frames": 99,
+    "window_seconds": 5.0,
+    "restart_frames": 144,
+    "restart_window_seconds": 8.0,
+    "armed": false,
+    "all_duty_zero": true,
+    "heap_free_bytes_before_after": 47352,
+    "control_stack_free_words": 642,
+    "uros_stack_free_words": 3541,
+    "pi_runtime": "not tested",
+    "physical_sensors": "not connected"
+  },
+  "hardware_connected": "STM32 board USB only; no motors or sensors, confirmed by user",
+  "newlib_heap_regression_test": "passed: allocation, bounds, exhaustion, negative increments",
+  "mpu6050_hardware_offsets": {
+    "accelerometer": [
+      -2789,
+      -4452,
+      1391
+    ],
+    "gyroscope": [
+      97,
+      -40,
+      -51
+    ]
+  },
+  "updated_image_flashing": "passed: updated BIN flashed, CDC enumerated, live telemetry and one Agent restart passed"
+}

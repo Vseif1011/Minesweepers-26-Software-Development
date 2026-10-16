@@ -1,0 +1,6 @@
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+set(CMAKE_C_COMPILER "$ENV{TOOLCHAIN_PREFIX}gcc")
+set(CMAKE_CXX_COMPILER "$ENV{TOOLCHAIN_PREFIX}g++")
+set(CMAKE_C_FLAGS_INIT "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -Os -ffunction-sections -fdata-sections -D_POSIX_TIMERS=1 -D_DEFAULT_SOURCE=1 -DCLOCK_MONOTONIC=0")
+set(CMAKE_CXX_FLAGS_INIT "${CMAKE_C_FLAGS_INIT} -fno-exceptions -fno-rtti")

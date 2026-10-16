@@ -1,0 +1,15 @@
+uint32 session
+uint32 sequence
+uint32 faults
+uint32 uptime_ms
+bool armed
+bool ready
+bool hardware_ok
+bool encoders_valid
+bool imu_valid
+bool metal_valid
+float32[5] duty
+uint32 control_stack_free_words
+uint32 uros_stack_free_words
+uint32 heap_free_bytes
+uint32 heap_min_free_bytes

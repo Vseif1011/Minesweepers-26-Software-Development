@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+  <storageModule moduleId="org.eclipse.cdt.core.settings">
+    <cconfiguration id="minesweeper.debug">
+      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="minesweeper.debug" moduleId="org.eclipse.cdt.core.settings" name="Debug"><externalSettings/><extensions><extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/></extensions></storageModule>
+      <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+        <configuration artifactExtension="elf" artifactName="Minesweeper_STM32F411" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" id="minesweeper.debug" name="Debug" parent="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug">
+          <folderInfo id="minesweeper.debug.root" name="/" resourcePath="">
+            <toolChain id="minesweeper.toolchain" name="MCU ARM GCC" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.exe.debug">
+              <option id="minesweeper.mcu" name="MCU" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_mcu" value="STM32F411CEUx" valueType="string"/>
+              <targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="minesweeper.platform" isAbstract="false" osList="all" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.targetplatform"/>
+              <builder arguments="-j4" buildPath="${workspace_loc:/Minesweeper_STM32F411}" command="make" enableAutoBuild="false" id="minesweeper.builder" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="GNU Make" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.builder"/>
+            </toolChain>
+          </folderInfo>
+          <sourceEntries><entry excluding="vendor|Debug|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/></sourceEntries>
+        </configuration>
+      </storageModule>
+      <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+    </cconfiguration>
+  </storageModule>
+  <storageModule moduleId="cdtBuildSystem" version="4.0.0"><project id="Minesweeper_STM32F411.null" name="Minesweeper_STM32F411"/></storageModule>
+</cproject>

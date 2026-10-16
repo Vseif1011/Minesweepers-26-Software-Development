@@ -1,0 +1,40 @@
+# Arduino/mock parameters only. STM32 bridge USB port/baud are pi.launch.py arguments;
+# STM32 motor/IMU calibration belongs to the flashed firmware.
+arduino_bridge:
+  ros__parameters:
+    track_width: 0.55
+    max_speed: 1.0
+    ticks_per_meter_left: 3800.0
+    ticks_per_meter_right: 2255.0
+    command_timeout: 0.5
+    port: /dev/ttyACM0
+    baud: 115200
+    rate: 20.0
+motor_controller:
+  ros__parameters:
+    track_width: 0.55
+    max_speed: 1.0
+    command_timeout: 0.5
+    pwm_pins: [9, 10, 6, 5]
+    direction_pins: [8, 11, 7, 4]
+imu:
+  ros__parameters:
+    i2c_bus: 1
+    address: 104
+    rate: 60.0
+    calibration_samples: 200
+    filter_gain: 0.031
+    frame_id: imu_link
+    parent_frame: base_link
+    track_width: 0.55
+    max_speed: 1.0
+camera:
+  ros__parameters:
+    capture_backend: mjpeg
+    device_path: /dev/v4l/by-id/usb-046d_080f_D68A4980-video-index0
+    device: 0
+    width: 640
+    height: 480
+    rate: 10.0
+    jpeg_quality: 40
+    mock_mine_visible: true
