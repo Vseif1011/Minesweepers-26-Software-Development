@@ -7,12 +7,13 @@ of the Linux ROS workspaces. Import the included `.project` into STM32CubeIDE.
 For an Arduino/ROS introduction and a shareable wiring checklist, start with
 [the electrical-team handoff](docs/ELECTRICAL_TEAM_HANDOFF.md).
 
-**The supplied profile is for commissioning with motor power disconnected.**
-It cannot arm motors. Driver models, direction/enable polarity, PWM frequency,
-encoder electrical interfaces/scales, and the detector readout circuit are
-still missing. These are hardware blockers, not settings inferred from the old
-Arduino pins. The user confirmed STM32F411CEU6 and five PWM pins; the remaining
-signal allocation is in [HARDWARE.md](docs/HARDWARE.md).
+**The default commissioning profile cannot arm motors.** The new, explicit
+`mdd10a` build profile follows the user-supplied PA0–PA3/PA8 PWM and
+PB12–PB15/PB10 direction wiring, using 20 kHz PWM+DIR with no ENABLE or STM E-stop
+input. It is open-loop duty control, independent of uncommissioned encoders.
+See [current motor setup](../../docs/MOTOR_CONTROL_SETUP.md) for the pin table,
+limits and joystick controls. The replacement motor image is prepared but has
+not been flashed; the last verified image is still motor-disabled.
 
 The application preserves the connected WeAct HID bootloader: flash starts at
 `0x08004000`, leaving its first 16 KiB intact. Normal USB is sufficient for
@@ -30,6 +31,10 @@ make -j4
 make test
 python3 scripts/inspect_image.py
 ```
+
+For the motor profile, use `make -j4 MOTOR_PROFILE=mdd10a`; outputs go into
+`Debug-mdd10a/`. The root wrapper is `bash scripts/build_stm32_firmware.sh mdd10a`.
+Do not confuse it with the default motor-disabled `Debug/` image.
 
 Set `TOOLCHAIN_PREFIX=/absolute/path/to/arm-none-eabi-` when the compiler is not
 on PATH. Sources use immutable vendor commits. Outputs are in `Debug/`.

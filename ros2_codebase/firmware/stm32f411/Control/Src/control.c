@@ -4,6 +4,10 @@
 static float clamp(float v, float limit) {
   return fmaxf(-limit, fminf(limit, v));
 }
+bool motor_feedback_required(const motor_config_t cfg[MOTOR_COUNT]) {
+  for (unsigned i=0;i<MOTOR_COUNT;++i) if (cfg[i].mode==MOTOR_VELOCITY) return true;
+  return false;
+}
 void safety_init(safety_t *s, uint32_t session) {
   memset(s, 0, sizeof(*s));
   s->session = session ? session : 1;

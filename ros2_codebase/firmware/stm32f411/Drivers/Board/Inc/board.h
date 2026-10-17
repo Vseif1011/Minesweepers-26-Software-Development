@@ -2,9 +2,19 @@
 #define BOARD_H
 #include "stm32f4xx_hal.h"
 #include "control.h"
-/* Hardware sign-off is deliberately a source-controlled setting, never a ROS parameter. */
+/* Default image remains motor-disabled. The explicit MDD10A build profile follows
+ * the supplied five PWM+DIR connections, with no STM E-stop/ENABLE input. */
+#ifndef BOARD_PROFILE_MDD10A
+#define BOARD_PROFILE_MDD10A 0
+#endif
+#if BOARD_PROFILE_MDD10A
+#define BOARD_HARDWARE_APPROVED 1
+#define BOARD_ESTOP_PRESENT 0
+#else
 #define BOARD_HARDWARE_APPROVED 0
-#define BOARD_PWM_FREQUENCY_HZ 0u /* UNKNOWN: motor driver datasheet required */
+#define BOARD_ESTOP_PRESENT 1
+#endif
+#define BOARD_PWM_FREQUENCY_HZ 20000u /* Cytron MDD10A: active-high sign-magnitude */
 #define BOARD_TRANSPORT_USB_CDC 1 /* MCU USB peripheral pins; board routing UNVERIFIED */
 typedef struct { GPIO_TypeDef *port; uint16_t pin; bool active_high; } gpio_signal_t;
 typedef struct {

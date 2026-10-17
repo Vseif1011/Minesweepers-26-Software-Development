@@ -5,6 +5,12 @@
 > and [serial protocol](../firmware/stm32f411/docs/SERIAL_PROTOCOL.md). The detailed
 > micro-ROS descriptions below record the previous implementation.
 
+> **Motor update:** `stm32_teleop.py` and `joystick_stm32.launch.py` now implement
+> five-channel joystick control for the new MDD10A firmware profile. The original
+> motor-disabled image remains the last verified flash. See
+> [motor setup](MOTOR_CONTROL_SETUP.md); older statements below about missing
+> motor command conversion describe the preceding commissioning implementation.
+
 Prepared for the STM32F411CEU6 architecture, 2026-10-16.
 
 ## Start with the actual architecture

@@ -1,5 +1,6 @@
 /vendor/
 /Debug/
+/Debug-mdd10a/
 /micro_ros/libmicroros/
 /micro_ros/generated/
 /.cache/

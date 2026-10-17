@@ -23,12 +23,14 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef *timer) {
   }
 }
 void sensor_peripherals_init(void) {
+#if BOARD_ESTOP_PRESENT
   __HAL_RCC_GPIOA_CLK_ENABLE();
   GPIO_InitTypeDef estop={0};estop.Pin=GPIO_PIN_4;
   estop.Mode=GPIO_MODE_IT_RISING_FALLING;estop.Pull=GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA,&estop);
   /* Above FreeRTOS BASEPRI. Callback calls no FreeRTOS API. */
   HAL_NVIC_SetPriority(EXTI4_IRQn,0,0);HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+#endif
   hi2c1.Instance=I2C1;hi2c1.Init.ClockSpeed=100000;
   hi2c1.Init.DutyCycle=I2C_DUTYCYCLE_2;hi2c1.Init.OwnAddress1=0;
   hi2c1.Init.AddressingMode=I2C_ADDRESSINGMODE_7BIT;

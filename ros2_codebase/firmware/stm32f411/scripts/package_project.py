@@ -2,10 +2,16 @@
 """Bundle prepared CubeIDE sources, vendor code, client library and ARM artifacts."""
 from pathlib import Path
 import zipfile
+import argparse
 root = Path(__file__).resolve().parents[1]
 repository = root.parents[1]
-out = repository / 'artifacts/stm32f411/Minesweeper_STM32F411_CubeIDE.zip'
-assert (root / 'Debug/Minesweeper_STM32F411.elf').exists(), 'Build firmware first'
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--profile',choices=['commissioning','mdd10a'],default='commissioning')
+profile=parser.parse_args().profile
+output_dir='Debug-mdd10a' if profile=='mdd10a' else 'Debug'
+suffix='_mdd10a' if profile=='mdd10a' else ''
+out = repository / f'artifacts/stm32f411/Minesweeper_STM32F411{suffix}_CubeIDE.zip'
+assert (root / output_dir / 'Minesweeper_STM32F411.elf').exists(), 'Build selected firmware first'
 out.parent.mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
     for base in [root, repository / 'interfaces/minesweeper_interfaces']:
@@ -17,8 +23,9 @@ with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive
                 continue
             if not file.is_file():
                 continue
-            if relative.parts[0] == 'Debug' and file.suffix not in {'.elf', '.bin', '.hex', '.map', '.log', '.json'}:
-                continue
+            if relative.parts[0].startswith('Debug'):
+                if relative.parts[0] != output_dir or file.suffix not in {'.elf', '.bin', '.hex', '.map', '.log', '.json'}:
+                    continue
             archive.write(file, file.relative_to(repository))
 print(out)
 print(f'{out.stat().st_size:,} bytes; import firmware/stm32f411 after extracting')

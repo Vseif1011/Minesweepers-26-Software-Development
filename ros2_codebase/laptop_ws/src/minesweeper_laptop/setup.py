@@ -15,5 +15,5 @@ setup(
     extras_require={'test': ['pytest']},
     maintainer='Minesweepers A', maintainer_email='maintainers@example.com',
     description='ROS 2 port of Minesweepers A', license='Proprietary',
-    entry_points={'console_scripts': ['teleop = minesweeper_laptop.teleop:main', 'odometry = minesweeper_laptop.odometry:main', 'ekf = minesweeper_laptop.ekf:main', 'mapping = minesweeper_laptop.mapping:main', 'vision = minesweeper_laptop.vision:main', 'command_demo = minesweeper_laptop.command_demo:main', 'covariance_gui = minesweeper_laptop.covariance_gui:main', 'stm32_detector = minesweeper_laptop.stm32_detector:main']},
+    entry_points={'console_scripts': ['teleop = minesweeper_laptop.teleop:main', 'odometry = minesweeper_laptop.odometry:main', 'ekf = minesweeper_laptop.ekf:main', 'mapping = minesweeper_laptop.mapping:main', 'vision = minesweeper_laptop.vision:main', 'command_demo = minesweeper_laptop.command_demo:main', 'covariance_gui = minesweeper_laptop.covariance_gui:main', 'stm32_detector = minesweeper_laptop.stm32_detector:main', 'stm32_teleop = minesweeper_laptop.stm32_teleop:main']},
 )

@@ -3,8 +3,11 @@
 from pathlib import Path
 import hashlib
 import struct
+import argparse
 root = Path(__file__).resolve().parents[1]
-image = root / 'Debug/Minesweeper_STM32F411.bin'
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--image',type=Path,default=root/'Debug/Minesweeper_STM32F411.bin')
+image = parser.parse_args().image
 data = image.read_bytes()
 stack, reset = struct.unpack_from('<II', data)
 assert 0 < len(data) <= 496*1024, 'Application exceeds reserved flash region'

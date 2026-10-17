@@ -13,8 +13,8 @@ void motor_stop_all(void) {
 bool motor_write(unsigned i, float duty, uint32_t now) {
   if (i>=MOTOR_COUNT) return false;
   const motor_binding_t *b=&board_motors[i];
-  if (!BOARD_HARDWARE_APPROVED || !b->timer || !b->pwm_active_high ||
-      !b->enable_present || !b->enable.port || !isfinite(duty)) return false;
+  if (!BOARD_HARDWARE_APPROVED || !b->timer || !b->direction.port || !b->pwm_active_high ||
+      (b->enable_present && !b->enable.port) || !isfinite(duty)) return false;
   float limit=board_motor_config[i].duty_limit;
   duty=fmaxf(-limit,fminf(limit,duty));
   int8_t sign=duty > 0 ? 1 : duty < 0 ? -1 : 0;

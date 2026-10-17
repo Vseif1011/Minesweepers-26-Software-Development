@@ -15,7 +15,7 @@ ros2 launch minesweeper_laptop laptop.launch.py mock:=true
 ```
 
 Executables: `teleop`, `odometry`, `ekf`, `mapping`, `vision`, `command_demo`,
-`covariance_gui`, `stm32_detector`. Default launch runs localization, mapping
+`covariance_gui`, `stm32_detector`, `stm32_teleop`. Default launch runs localization, mapping
 and synthetic-image vision. It needs the Pi workspace's mock or real sensor publishers to produce
 motion and detections, but the Pi package is not a build dependency.
 
@@ -44,7 +44,10 @@ The parent [README](../README.md) has deployment, networking and test commands.
 For the STM32F411CEU6, use `hardware:=stm32`. Odometry subscribes to native
 paired 64-bit encoder counts, the EKF reads `/imu/data_raw`, and the detector
 adapter requires fresh valid `/motor/status`. `mock` only selects the vision
-backend. No command conversion to `/motor/setpoints` exists because physical
-motor/encoder roles remain unassigned; legacy teleop cannot move the STM32.
+backend. `teleop:=true` with this hardware selects `stm32_teleop`; the default
+is preview mode. The dedicated joystick launch and MDD10A firmware profile use
+the confirmed PWM/DIR wiring with provisional left/right motor groups. Legacy
+teleop cannot move the STM32. See [motor setup](../docs/MOTOR_CONTROL_SETUP.md)
+before enabling live commands; the new motor image is prepared but not flashed.
 See [STM32 deployment](../docs/STM32_DEPLOYMENT.md) and the
 [ordered reading guide](../docs/READING_GUIDE.md).

@@ -2,12 +2,17 @@
 set -euo pipefail
 root_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 if [[ "${1:-}" != --motor-power-isolated ]]; then
-  echo 'Physically disconnect motor power, then use: bash scripts/flash_hid.sh --motor-power-isolated' >&2
+  echo 'Physically disconnect motor power, then use: bash scripts/flash_hid.sh --motor-power-isolated [commissioning|mdd10a]' >&2
   exit 2
 fi
-firmware="$root_dir/Debug/Minesweeper_STM32F411.bin"
+case "${2:-commissioning}" in
+  commissioning) output_dir=Debug ;;
+  mdd10a) output_dir=Debug-mdd10a ;;
+  *) echo 'Unknown motor profile' >&2; exit 2 ;;
+esac
+firmware="$root_dir/$output_dir/Minesweeper_STM32F411.bin"
 test -s "$firmware"
-python3 "$root_dir/scripts/inspect_image.py"
+python3 "$root_dir/scripts/inspect_image.py" --image "$firmware"
 python3 - <<'PY'
 from pathlib import Path
 import os
@@ -36,8 +41,8 @@ echo "cd8d6b53f5d43f9c8aaaeefaf7fdc34593de9636b5d2d2652294eb48f79aec74  $tool" |
 chmod u+x "$tool"
 # Vendor tool uses the existing bootloader's 0x08004000 application region.
 # Do not use its erase command or a full-flash image.
-"$tool" "$firmware" reboot | tee "$root_dir/Debug/flash_hid.log"
-if ! rg -q 'Flash Done !' "$root_dir/Debug/flash_hid.log"; then
+"$tool" "$firmware" reboot | tee "$root_dir/$output_dir/flash_hid.log"
+if ! rg -q 'Flash Done !' "$root_dir/$output_dir/flash_hid.log"; then
   echo 'Vendor tool did not report success; flashing is NOT verified.' >&2
   exit 1
 fi

@@ -9,7 +9,10 @@ for name in ['.project', '.cproject']:
     ET.parse(root / name)
 assert '#define BOARD_HARDWARE_APPROVED 0' in (root / 'Drivers/Board/Inc/board.h').read_text()
 board = (root / 'Drivers/Board/Src/board.c').read_text()
-assert board.count('.timer=&htim2') == 4 and board.count('.timer=&htim1') == 1
+assert board.count('MOTOR_BINDING(&htim2') == 4 and board.count('MOTOR_BINDING(&htim1') == 1
+for pin in [10,12,13,14,15]:
+    assert 'GPIO_PIN_'+str(pin) in board
+assert '.enable_present=false' in board and 'DUTY_CONFIG(.20f)' in board
 assert 'board_encoders[ENCODER_COUNT] = {0}' in board
 ioc = dict(line.split('=', 1) for line in (root / 'Minesweeper_STM32F411.ioc').read_text().splitlines() if '=' in line)
 assert ioc['Mcu.UserName'] == 'STM32F411CEUx'

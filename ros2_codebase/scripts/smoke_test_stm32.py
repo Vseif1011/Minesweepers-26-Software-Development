@@ -78,7 +78,15 @@ def main():
                 raise AssertionError(name)
             report['checks'].append(name)
             print('PASS:', name, flush=True)
-        spin(3.0)
+        # Discovery/startup can exceed three seconds during a firmware build or
+        # live camera/joystick processing. Wait for data, retaining a hard bound.
+        discovery_deadline = time.monotonic()+10.0
+        while time.monotonic() < discovery_deadline:
+            spin(0.2)
+            if ('odom' in latest and latest['odom'].pose.pose.position.x > 0.1
+                    and 'ekf' in latest and latest['ekf'].twist.twist.angular.z > 0.01
+                    and 'metal' in latest and latest['metal'].data):
+                break
         check('Native paired 64-bit encoder data reaches odometry',
               'odom' in latest and latest['odom'].pose.pose.position.x > 0.1)
         check('Raw STM32 gyro reaches the EKF without an invented orientation',

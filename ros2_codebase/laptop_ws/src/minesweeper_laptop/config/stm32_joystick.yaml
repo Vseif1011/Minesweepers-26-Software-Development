@@ -1,0 +1,20 @@
+stm32_teleop:
+  ros__parameters:
+    linear_axis: 1
+    twist_axis: 2
+    arm_axis: 3
+    linear_sign: 1.0
+    twist_sign: 1.0
+    arm_sign: 1.0
+    deadman_button: 1  # Printed button 2; Linux index 1, captured on this joystick.
+    left_channels: [0, 1]  # PWM1/2 provisionally left; change after wheel identification.
+    right_channels: [2, 3] # PWM3/4 provisionally right. Numbers here are zero-based.
+    motor_signs: [1, 1, 1, 1, 1]
+    drive_limit: 0.20       # Signed PWM duty, not velocity: initial cap 20%.
+    arm_limit: 0.15         # Fifth motor, PA8: initial cap 15%.
+    drive_deadzone: 0.08
+    twist_deadzone: 0.10
+    arm_deadzone: 0.20      # Base lever has no return spring; center it before enable.
+    input_timeout: 0.25
+    status_timeout: 0.15
+    joystick_device: /dev/input/by-id/usb-Logitech_Extreme_3D_pro_00000000002A-joystick

@@ -1,0 +1,17 @@
+[Unit]
+Description=Minesweepers STM32 USB serial to ROS 2 bridge
+Wants=network-online.target time-sync.target
+After=network-online.target time-sync.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/minesweeper_serial_ws
+ExecStart=/home/pi/minesweeper_serial_ws/start_bridge.sh
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target

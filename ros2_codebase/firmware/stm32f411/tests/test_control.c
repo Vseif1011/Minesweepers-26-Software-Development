@@ -26,6 +26,10 @@ static void safe(const safety_t *s) {
 }
 int main(void) {
   configuration();safety_t s;motor_command_t c;
+  CHECK(motor_feedback_required(cfg));
+  for (unsigned i=0;i<MOTOR_COUNT;++i) cfg[i].mode=MOTOR_DUTY;
+  CHECK(!motor_feedback_required(cfg));
+  configuration();
   safety_init(&s,100);safe(&s);
   c=command(&s,1,true,10000);
   CHECK(!safety_command(&s,cfg,&c,healthy,0,10000));safe(&s); /* no arm on boot */

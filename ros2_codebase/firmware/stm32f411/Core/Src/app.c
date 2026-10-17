@@ -41,7 +41,8 @@ static void control_task(void *arg) {
     app_epoch(now,&epoch,&link,&clock);
     snap.hardware_ok=hardware_ready;
     snap.encoders_valid=hardware_ready && encoder_sample(snap.velocity,snap.ticks);
-    safety_inputs_t inputs={hardware_ready,link,board_estop_active(),snap.encoders_valid,clock};
+    bool feedback_ok=!motor_feedback_required(board_motor_config) || snap.encoders_valid;
+    safety_inputs_t inputs={hardware_ready,link,board_estop_active(),feedback_ok,clock};
     if (estop_irq) {
       /* PRIMASK, because a high-priority E-stop ISR is above BASEPRI. */
       uint32_t mask=__get_PRIMASK(); __disable_irq(); estop_irq=false;

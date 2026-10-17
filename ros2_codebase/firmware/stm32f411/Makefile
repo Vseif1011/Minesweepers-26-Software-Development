@@ -1,5 +1,12 @@
 TARGET := Minesweeper_STM32F411
 BUILD_DIR := Debug
+MOTOR_PROFILE ?= commissioning
+ifeq ($(MOTOR_PROFILE),mdd10a)
+BUILD_DIR := Debug-mdd10a
+PROFILE_DEFS := -DBOARD_PROFILE_MDD10A=1
+else ifneq ($(MOTOR_PROFILE),commissioning)
+$(error MOTOR_PROFILE must be commissioning or mdd10a)
+endif
 TOOLCHAIN_PREFIX ?= arm-none-eabi-
 CC := $(TOOLCHAIN_PREFIX)gcc
 OBJCOPY := $(TOOLCHAIN_PREFIX)objcopy
@@ -14,7 +21,7 @@ INCDIRS := Core/Inc Control/Inc Drivers/Board/Inc Serial/Inc USB_DEVICE/App USB_
  $(HAL)/Inc $(HAL)/Inc/Legacy $(DEVICE)/Include $(CUBE)/Drivers/CMSIS/Include \
  $(FREERTOS)/include $(FREERTOS)/portable/GCC/ARM_CM4F $(FREERTOS)/CMSIS_RTOS \
  $(USB)/Core/Inc $(USB)/Class/CDC/Inc
-DEFS := -DUSE_HAL_DRIVER -DSTM32F411xE \
+DEFS := -DUSE_HAL_DRIVER -DSTM32F411xE $(PROFILE_DEFS) \
  -D_POSIX_TIMERS=1 -D_DEFAULT_SOURCE=1
 CFLAGS := $(CPU) $(DEFS) $(addprefix -I,$(INCDIRS)) -std=gnu11 -Os -g3 \
  -ffunction-sections -fdata-sections -fstack-usage -Wall -Wextra -Werror=implicit-function-declaration

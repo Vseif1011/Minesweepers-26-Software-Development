@@ -35,6 +35,7 @@ bool safety_command(safety_t *s, const motor_config_t cfg[MOTOR_COUNT],
                     const motor_command_t *cmd, safety_inputs_t in,
                     uint32_t now_ms, uint64_t epoch_ms);
 void pid_reset(motor_pid_t *pid);
+bool motor_feedback_required(const motor_config_t cfg[MOTOR_COUNT]);
 float pid_step(motor_pid_t *pid, const motor_config_t *cfg, float target,
                float measured, float dt);
 /* Unsigned modular timer delta, rejecting ambiguous half-range and bad bounds. */

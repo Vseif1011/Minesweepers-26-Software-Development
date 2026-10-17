@@ -1,5 +1,10 @@
 # Confirmed facts and wiring plan
 
+**Motor wiring update:** the supplied Cytron MDD10A PWM/DIR diagram supersedes
+the earlier proposed motor/ENABLE/E-stop allocation below. See the
+[current motor setup](../../../docs/MOTOR_CONTROL_SETUP.md). The explicit motor
+profile has no STM E-stop input; the default commissioning profile remains locked.
+
 The user confirmed **STM32F411CEU6** connected through the board USB-C connector,
 PWM pins PA0, PA1, PA2, PA3 and PA8, MPU6050, and two
 `YT06-OP-600B-6-24V-2M` rotary encoders, and a 25 MHz crystal. USB inspection found WeAct Studio HID

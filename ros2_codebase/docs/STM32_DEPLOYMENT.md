@@ -4,6 +4,11 @@ The active STM32F411CEU6 firmware uses HAL, FreeRTOS and direct USB CDC serial.
 No micro-ROS client library or micro-ROS agent is used by this path. Previous
 micro-ROS source locks and reports are retained as historical references.
 
+The supplied PWM/DIR motor wiring and Logitech controller now have an explicit
+`mdd10a` firmware profile and `stm32_teleop` host node. See
+[motor setup](MOTOR_CONTROL_SETUP.md) for their configuration and flash status.
+The default commissioning image remains motor-disabled.
+
 ```text
 Laptop ROS 2 <-- DDS network --> Pi stm32_bridge <-- USB serial v1 --> STM32
 ```

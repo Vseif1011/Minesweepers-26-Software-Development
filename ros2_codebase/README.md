@@ -164,8 +164,11 @@ On laptop, source `interfaces/install/local_setup.bash` and the laptop workspace
 then select `hardware:=stm32` in its launch. This consumes native paired encoder
 samples, raw IMU gyro and valid detector samples. Add a camera when available.
 The legacy teleop/demo `/cmd_vel` and `/controller` messages are not STM32 motor
-commands. Channel roles remain unassigned, so motion command conversion is
-pending hardware definitions; the flashed profile rejects arming.
+commands. The new `stm32_teleop` path sends five signed PWM duties using the
+Logitech stick, Z twist and base lever. It requires the new MDD10A motor firmware;
+the last verified flashed image is still motor-disabled. See
+[joystick and motor setup](docs/MOTOR_CONTROL_SETUP.md) for pin assignments,
+provisional wheel groups, build/flash status and the preview/live launch commands.
 
 The retained Arduino deployment is explicitly named `legacy_pi.launch.py`.
 Its serial/GPIO/I2C parameters in `pi.yaml` do not configure the STM32. The
